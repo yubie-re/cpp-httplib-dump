@@ -91,9 +91,9 @@ void hook()
 {
     MH_Initialize();
     // only x64 for now lol x86 doesn't like me using their stuff
-    g_clientimpl_constructor = scanner::rip(scanner::scan("E8 ? ? ? ? 90 48 8D 05 ? ? ? ? 48 89 03 48 8D 8B ? ? ? ? BA", "clientimpl::clientimpl", GetModuleHandleA(nullptr)), 1);
-    g_process_request = scanner::rip(scanner::scan("E8 ? ? ? ? 0F B6 F0 40 84 F6 0F 84 ? ? ? ? 41 8B 45 20 8B D8 3D ? ? ? ? 7E 3C", "process_request", GetModuleHandleA(nullptr)), 1);
-    g_read_content_with_length = scanner::rip(scanner::scan("E8 ? ? ? ? ? ? ? ? ? ? ? B9 90 01 00 00 B8 9D 01 00 00", "read_content_with_length", GetModuleHandleA(nullptr)), 1);
+    g_clientimpl_constructor = scanner::rip(scanner::scan("E8 ? ? ? ? 90 ? ? ? ? ? ? ? 48 ? ? ? ? ? ? ? ? ? BA 02 00 00 00", "clientimpl::clientimpl", GetModuleHandleA(nullptr)), 1);
+    g_process_request = scanner::rip(scanner::scan("E8 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 3D 2C 01 00 00", "process_request", GetModuleHandleA(nullptr)), 1);
+    g_read_content_with_length = scanner::rip(scanner::scan("E8 ? ? ? ? ? ? ? ? ? ? ? ? 90 01 00 00 ? 9D 01 00 00", "read_content_with_length", GetModuleHandleA(nullptr)), 1);
     hook_func((void **)&o_clientimpl_constructor, g_clientimpl_constructor, clientimpl_constructor);
     hook_func((void **)&o_read_content_with_length, g_read_content_with_length, read_content_with_length);
     hook_func((void **)&o_process_request, g_process_request, process_request);
