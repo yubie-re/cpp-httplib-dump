@@ -129,8 +129,8 @@ DWORD WINAPI main_thread(PVOID module)
     {
         fclose(stdout);
         FreeConsole();
-        FreeLibraryAndExitThread((HMODULE)module, 0);
     }
+    FreeLibraryAndExitThread((HMODULE)module, 0);
     return 1;
 }
 
