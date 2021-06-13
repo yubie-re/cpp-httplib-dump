@@ -109,14 +109,28 @@ void unhook()
         unhook_func(g_process_request);
 }
 
+bool g_dealloc_console = false;
+
 DWORD WINAPI main_thread(PVOID module)
 {
+    if(!GetConsoleWindow())
+    {
+        AllocConsole();
+        freopen("CONOUT$", "w", stdout);
+        g_dealloc_console = true;
+    }
     hook();
     while (!GetAsyncKeyState(VK_DELETE))
     {
         std::this_thread::yield();
     }
     unhook();
+    if(g_dealloc_console)
+    {
+        fclose(stdout);
+        FreeConsole();
+        FreeLibraryAndExitThread((HMODULE)module, 0);
+    }
     return 1;
 }
 
