@@ -49,7 +49,7 @@ void(__fastcall *o_clientimpl_constructor)(httplib::ClientImpl *this_, const std
 
 void __fastcall clientimpl_constructor(httplib::ClientImpl *this_, const std::string *host, int port, const std::string *client_cert_path, const std::string *client_key_path)
 {
-    printf("Client constructed: %s:%d (%p)\n", (*host).c_str(), port, (void*)this_);
+    printf("Client constructed: %s:%d (%p)\n", (*host).c_str(), port, (void *)this_);
     return o_clientimpl_constructor(this_, host, port, client_cert_path, client_key_path);
 }
 
@@ -75,8 +75,8 @@ char __fastcall process_request(httplib::ClientImpl *this_, void *strm, httplib:
     }
     if (req->content_receiver)
     {
-       printf("Content Reciever Active\n", req->content_receiver);
-       g_custom_reciever = true;
+        printf("Content Reciever Active\n", req->content_receiver);
+        g_custom_reciever = true;
     }
     printf("Processing request: %s (%s) %p\n", req->path.c_str(), req->method.c_str(), res);
     auto result = o_process_request(this_, strm, req, res, close_connection, error);
@@ -113,7 +113,7 @@ bool g_dealloc_console = false;
 
 DWORD WINAPI main_thread(PVOID module)
 {
-    if(!GetConsoleWindow())
+    if (!GetConsoleWindow())
     {
         AllocConsole();
         freopen("CONOUT$", "w", stdout);
@@ -125,7 +125,7 @@ DWORD WINAPI main_thread(PVOID module)
         std::this_thread::yield();
     }
     unhook();
-    if(g_dealloc_console)
+    if (g_dealloc_console)
     {
         fclose(stdout);
         FreeConsole();
