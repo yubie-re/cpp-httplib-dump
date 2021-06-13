@@ -1,0 +1,9 @@
+[submodule "testapp/vendor/httplib"]
+	path = testapp/vendor/httplib
+	url = https://github.com/yhirose/cpp-httplib.git
+[submodule "dumptool/vendor/minhook"]
+	path = dumptool/vendor/minhook
+	url = https://github.com/TsudaKageyu/minhook.git
+[submodule "dumptool/vendor/httplib"]
+	path = dumptool/vendor/httplib
+	url = https://github.com/yhirose/cpp-httplib.git
